@@ -2,3 +2,4 @@ venv
 temp*.txt
 temp*.json
 temp*.png
+~$*
