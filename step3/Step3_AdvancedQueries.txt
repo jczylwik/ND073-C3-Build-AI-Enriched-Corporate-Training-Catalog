@@ -1,0 +1,294 @@
+QUERY 1 (Courses - Instructor Profiles):
+{
+  "search": "O365",
+  "select": "title,description,instructor,instructor_profile"
+}
+
+RESULT 1:
+{
+  "@odata.context": "https://dentalofficeassistant-search.search.windows.net/indexes('courses-index')/$metadata#docs(*)",
+  "value": [
+    {
+      "@search.score": 20.8936,
+      "description": "Learn our internal best practices for using the O365 suite including email signatures, file storage and other issues",
+      "instructor": "Gerald Dominguez",
+      "title": "O365",
+      "instructor_profile": "[\"Gerald is a Junior IT Administrator and has been with the company for 1 year. Gerald played NCAA soccer and is a part-time soccer coach on weekends. \"]"
+    }
+  ]
+}
+
+QUERY 2 (Courses - Instructor Profiles):
+{
+  "search": "database",
+  "filter": "source eq 'Company Moodle'",
+  "select": "title,description,instructor,instructor_profile,source"
+}
+
+RESULT 2:
+{
+  "@odata.context": "https://dentalofficeassistant-search.search.windows.net/indexes('courses-index')/$metadata#docs(*)",
+  "value": [
+    {
+      "@search.score": 5.278807,
+      "description": "For developers, learn our best practices for securely connecting to databases",
+      "instructor": "Eileen Diaz",
+      "source": "Company Moodle",
+      "title": "Security for database code",
+      "instructor_profile": "[\"Eileen is our Senior Security Engineer responsible for application and service security. She has been with the company for 9 years and enjoys writing Sci-Fi in her spare time.\"]"
+    },
+    {
+      "@search.score": 5.278807,
+      "description": "For administrators, learn our best practices for securing all databases",
+      "instructor": "Eileen Diaz",
+      "source": "Company Moodle",
+      "title": "Security for database admins",
+      "instructor_profile": "[\"Eileen is our Senior Security Engineer responsible for application and service security. She has been with the company for 9 years and enjoys writing Sci-Fi in her spare time.\"]"
+    }
+  ]
+}
+
+QUERY 3 (Library - search for publication name):
+{
+  "search": "EURASIP",
+  "select": "publicationname,metadata_title"
+}
+
+RESULT 3:
+{
+  "@odata.context": "https://dentalofficeassistant-search.search.windows.net/indexes('papers-index')/$metadata#docs(*)",
+  "value": [
+    {
+      "@search.score": 12.552976,
+      "metadata_title": "Augmented reality virtual glasses try-on technology based on iOS platform",
+      "publicationname": "EURASIP Journal on Image and Video Processing"
+    },
+    {
+      "@search.score": 12.136551,
+      "metadata_title": "A classification method for social information of sellers on social network",
+      "publicationname": "EURASIP Journal on Image and Video Processing"
+    }
+  ]
+}
+
+QUERY 4 (Library - search for publisher and filter on publication date):
+{
+  "search": "Springer",
+  "filter": "publicationdate gt '2020-01-01'",
+  "select": "publisher,publicationdate,publicationname,metadata_title"
+}
+
+RESULT 4:
+{
+  "@odata.context": "https://dentalofficeassistant-search.search.windows.net/indexes('papers-index')/$metadata#docs(*)",
+  "value": [
+    {
+      "@search.score": 0.029852966,
+      "metadata_title": "Discriminated by an algorithm: a systematic review of discrimination and fairness by algorithmic decision-making in the context of HR recruitment and HR development",
+      "publicationname": "Business Research",
+      "publisher": "Springer",
+      "publicationdate": "2020-11-01"
+    },
+    {
+      "@search.score": 0.029852966,
+      "metadata_title": "A classification method for social information of sellers on social network",
+      "publicationname": "EURASIP Journal on Image and Video Processing",
+      "publisher": "Springer",
+      "publicationdate": "2021-01-14"
+    },
+    {
+      "@search.score": 0.029852966,
+      "metadata_title": "Improving prediction with enhanced Distributed Memory-based Resilient Dataset Filter",
+      "publicationname": "Journal of Big Data",
+      "publisher": "Springer",
+      "publicationdate": "2020-02-28"
+    },
+    {
+      "@search.score": 0.029852966,
+      "metadata_title": "Technological advancements and opportunities in Neuromarketing: a systematic review",
+      "publicationname": "Brain Informatics",
+      "publisher": "Springer",
+      "publicationdate": "2020-09-21"
+    },
+    {
+      "@search.score": 0.029852966,
+      "metadata_title": "Detecting problematic transactions in a consumer-to-consumer e-commerce network",
+      "publicationname": "Applied Network Science",
+      "publisher": "Springer",
+      "publicationdate": "2020-11-16"
+    }
+  ]
+}
+
+QUERY 5 (Library - DOI URL):
+{
+  "search": "social network",
+  "select": "publisher,publicationdate,publicationname,metadata_title,doi"
+}
+
+RESULT 5:
+{
+  "@odata.context": "https://dentalofficeassistant-search.search.windows.net/indexes('papers-index')/$metadata#docs(*)",
+  "value": [
+    {
+      "@search.score": 17.796432,
+      "metadata_title": "Privacy preservation techniques in big data analytics: a survey",
+      "publicationname": "Journal of Big Data",
+      "publisher": "Springer",
+      "doi": "10.1186/s40537-018-0141-8",
+      "publicationdate": "2018-09-22"
+    },
+    {
+      "@search.score": 6.4127903,
+      "metadata_title": "01-CVM0189.pdf",
+      "publicationname": "",
+      "publisher": "",
+      "doi": "",
+      "publicationdate": ""
+    },
+    {
+      "@search.score": 6.3776903,
+      "metadata_title": "A classification method for social information of sellers on social network",
+      "publicationname": "EURASIP Journal on Image and Video Processing",
+      "publisher": "Springer",
+      "doi": "10.1186/s13640-020-00545-z",
+      "publicationdate": "2021-01-14"
+    },
+    {
+      "@search.score": 3.6074984,
+      "metadata_title": "Detecting problematic transactions in a consumer-to-consumer e-commerce network",
+      "publicationname": "Applied Network Science",
+      "publisher": "Springer",
+      "doi": "10.1007/s41109-020-00330-x",
+      "publicationdate": "2020-11-16"
+    },
+    {
+      "@search.score": 2.5185132,
+      "metadata_title": "Multi technique amalgamation for enhanced information identification with content based image data",
+      "publicationname": "SpringerPlus",
+      "publisher": "Springer",
+      "doi": "10.1186/s40064-015-1515-4",
+      "publicationdate": "2015-12-01"
+    },
+    {
+      "@search.score": 1.9478517,
+      "metadata_title": "Mobile marketing recommendation method based on user location feedback",
+      "publicationname": "Human-centric Computing and Information Sciences",
+      "publisher": "Springer",
+      "doi": "10.1186/s13673-019-0177-6",
+      "publicationdate": "2019-05-01"
+    },
+    {
+      "@search.score": 1.9001447,
+      "metadata_title": "Augmented reality virtual glasses try-on technology based on iOS platform",
+      "publicationname": "EURASIP Journal on Image and Video Processing",
+      "publisher": "Springer",
+      "doi": "10.1186/s13640-018-0373-8",
+      "publicationdate": "2018-11-27"
+    },
+    {
+      "@search.score": 1.8668079,
+      "metadata_title": null,
+      "publicationname": "",
+      "publisher": "",
+      "doi": "",
+      "publicationdate": ""
+    },
+    {
+      "@search.score": 1.3235364,
+      "metadata_title": "Sentiment analysis and the complex natural language",
+      "publicationname": "Complex Adaptive Systems Modeling",
+      "publisher": "Springer",
+      "doi": "10.1186/s40294-016-0016-9",
+      "publicationdate": "2016-02-03"
+    },
+    {
+      "@search.score": 1.2705009,
+      "metadata_title": "Big data stream analysis: a systematic literature review",
+      "publicationname": "Journal of Big Data",
+      "publisher": "Springer",
+      "doi": "10.1186/s40537-019-0210-7",
+      "publicationdate": "2019-06-06"
+    },
+    {
+      "@search.score": 1.2224844,
+      "metadata_title": null,
+      "publicationname": "",
+      "publisher": "",
+      "doi": "",
+      "publicationdate": ""
+    },
+    {
+      "@search.score": 1.171407,
+      "metadata_title": "Toward a testbed for evaluating computational trust models: experiments and analysis",
+      "publicationname": "Journal of Trust Management",
+      "publisher": "Springer",
+      "doi": "10.1186/s40493-015-0019-z",
+      "publicationdate": "2015-09-07"
+    },
+    {
+      "@search.score": 1.1454034,
+      "metadata_title": "Context-aware rule learning from smartphone data: survey, challenges and future directions",
+      "publicationname": "Journal of Big Data",
+      "publisher": "Springer",
+      "doi": "10.1186/s40537-019-0258-4",
+      "publicationdate": "2019-10-31"
+    },
+    {
+      "@search.score": 1.1058544,
+      "metadata_title": "Technological advancements and opportunities in Neuromarketing: a systematic review",
+      "publicationname": "Brain Informatics",
+      "publisher": "Springer",
+      "doi": "10.1186/s40708-020-00109-x",
+      "publicationdate": "2020-09-21"
+    },
+    {
+      "@search.score": 0.93727505,
+      "metadata_title": "Mining aspects of customer’s review on the social network",
+      "publicationname": "Journal of Big Data",
+      "publisher": "Springer",
+      "doi": "10.1186/s40537-019-0184-5",
+      "publicationdate": "2019-02-28"
+    },
+    {
+      "@search.score": 0.80343837,
+      "metadata_title": "Discriminated by an algorithm: a systematic review of discrimination and fairness by algorithmic decision-making in the context of HR recruitment and HR development",
+      "publicationname": "Business Research",
+      "publisher": "Springer",
+      "doi": "10.1007/s40685-020-00134-w",
+      "publicationdate": "2020-11-01"
+    },
+    {
+      "@search.score": 0.7060599,
+      "metadata_title": "Improving prediction with enhanced Distributed Memory-based Resilient Dataset Filter",
+      "publicationname": "Journal of Big Data",
+      "publisher": "Springer",
+      "doi": "10.1186/s40537-020-00292-y",
+      "publicationdate": "2020-02-28"
+    },
+    {
+      "@search.score": 0.4490164,
+      "metadata_title": "Local regression transfer learning with applications to users’ psychological characteristics prediction",
+      "publicationname": "Brain Informatics",
+      "publisher": "Springer",
+      "doi": "10.1007/s40708-015-0017-z",
+      "publicationdate": "2015-09-01"
+    },
+    {
+      "@search.score": 0.3905751,
+      "metadata_title": "QER: a new feature selection method for sentiment analysis",
+      "publicationname": "Human-centric Computing and Information Sciences",
+      "publisher": "Springer",
+      "doi": "10.1186/s13673-018-0135-8",
+      "publicationdate": "2018-05-09"
+    },
+    {
+      "@search.score": 0.25704348,
+      "metadata_title": null,
+      "publicationname": "",
+      "publisher": "",
+      "doi": "",
+      "publicationdate": ""
+    }
+  ]
+}

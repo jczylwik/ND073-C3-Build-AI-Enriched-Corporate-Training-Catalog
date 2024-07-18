@@ -1,0 +1,31 @@
+{
+  "@odata.context": "https://dentalofficeassistant-search.search.windows.net/$metadata#indexers/$entity",
+  "@odata.etag": "\"0x8DCA65D1F38BD98\"",
+  "name": "courses-indexer",
+  "description": "",
+  "dataSourceName": "courses3",
+  "skillsetName": "courses-skillset",
+  "targetIndexName": "courses-index",
+  "disabled": null,
+  "schedule": null,
+  "parameters": {
+    "batchSize": null,
+    "maxFailedItems": 0,
+    "maxFailedItemsPerBatch": 0,
+    "base64EncodeKeys": false,
+    "configuration": {}
+  },
+  "fieldMappings": [],
+  "outputFieldMappings": [
+    {
+      "sourceFieldName": "/document/description/keyphrases",
+      "targetFieldName": "keyphrases"
+    },
+    {
+      "sourceFieldName": "/document/instructorProfile/*/description",
+      "targetFieldName": "instructor_profile"
+    }
+  ],
+  "cache": null,
+  "encryptionKey": null
+}
