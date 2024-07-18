@@ -1,0 +1,147 @@
+{
+  "@odata.context": "https://dentalofficeassistant-search.search.windows.net/$metadata#skillsets/$entity",
+  "@odata.etag": "\"0x8DCA0E626899795\"",
+  "name": "papers-skillset",
+  "description": "Skillset created from the portal. skillsetName: papers-skillset; contentField: merged_content; enrichmentGranularity: document; knowledgeStoreStorageAccount: ;",
+  "skills": [
+    {
+      "@odata.type": "#Microsoft.Skills.Text.V3.EntityRecognitionSkill",
+      "name": "#1",
+      "description": null,
+      "context": "/document/merged_content",
+      "categories": [
+        "PhoneNumber",
+        "Person",
+        "URL",
+        "Quantity",
+        "IPAddress",
+        "Organization",
+        "PersonType",
+        "Address",
+        "Location",
+        "Skill",
+        "DateTime",
+        "Product",
+        "Email",
+        "Event"
+      ],
+      "defaultLanguageCode": "en",
+      "minimumPrecision": null,
+      "modelVersion": null,
+      "inputs": [
+        {
+          "name": "text",
+          "source": "/document/merged_content"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "organizations",
+          "targetName": "organizations"
+        },
+        {
+          "name": "persons",
+          "targetName": "people"
+        }
+      ]
+    },
+    {
+      "@odata.type": "#Microsoft.Skills.Text.MergeSkill",
+      "name": "#2",
+      "description": null,
+      "context": "/document",
+      "insertPreTag": " ",
+      "insertPostTag": " ",
+      "inputs": [
+        {
+          "name": "text",
+          "source": "/document/content"
+        },
+        {
+          "name": "itemsToInsert",
+          "source": "/document/normalized_images/*/text"
+        },
+        {
+          "name": "offsets",
+          "source": "/document/normalized_images/*/contentOffset"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "mergedText",
+          "targetName": "merged_content"
+        }
+      ]
+    },
+    {
+      "@odata.type": "#Microsoft.Skills.Vision.OcrSkill",
+      "name": "#3",
+      "description": null,
+      "context": "/document/normalized_images/*",
+      "textExtractionAlgorithm": null,
+      "lineEnding": "Space",
+      "defaultLanguageCode": "en",
+      "detectOrientation": true,
+      "inputs": [
+        {
+          "name": "image",
+          "source": "/document/normalized_images/*"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "targetName": "text"
+        },
+        {
+          "name": "layoutText",
+          "targetName": "layoutText"
+        }
+      ]
+    },
+    {
+      "@odata.type": "#Microsoft.Skills.Custom.WebApiSkill",
+      "name": "SpringerLookup",
+      "description": "Retrieve information about articles from Springer API",
+      "context": "/document",
+      "uri": "https://corptraincat.azurewebsites.net/api/SpringerLookup",
+      "httpMethod": "POST",
+      "timeout": "PT30S",
+      "batchSize": 1,
+      "degreeOfParallelism": 1,
+      "authResourceId": null,
+      "inputs": [
+        {
+          "name": "ArticleName",
+          "source": "/document/metadata_title"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "publicationName",
+          "targetName": "publicationname"
+        },
+        {
+          "name": "publisher",
+          "targetName": "publisher"
+        },
+        {
+          "name": "doi",
+          "targetName": "doi"
+        },
+        {
+          "name": "publicationDate",
+          "targetName": "publicationdate"
+        }
+      ],
+      "httpHeaders": {
+        "x-functions-key": "KEY_DELETED_FOR_SECURITY_REASONS"
+      },
+      "authIdentity": null
+    }
+  ],
+  "cognitiveServices": null,
+  "knowledgeStore": null,
+  "indexProjections": null,
+  "encryptionKey": null
+}
